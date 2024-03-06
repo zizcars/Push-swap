@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/06 14:09:55 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/06 17:35:16 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct number_
 /*----------------tooles.c--------------*/
 t_list	*c_node(int content);
 int		check_d(t_list *head, int data);
-t_list *c_stack(int argc, char **argv);
+void	c_stack(int argc, char **argv, t_list **stack_a);
 /*-------------------------------------*/
 
 /*----------new_atoi.c--------------*/
@@ -46,9 +46,9 @@ int		top(t_list *stack);
 /*----------------------------------------------------------*/
 
 /*-----------------sorting.c----------------*/
-void	selection_sort(t_list **stack_a);
-int		is_not_sort(t_list *stack_a);
-void	sort2_3(t_list **stack_a, int size);
+// void	selection_sort(t_list **stack_a);
+// int		is_not_sort(t_list *stack_a);
+// void	sort2_3(t_list **stack_a, int size);
 /*------------------------------------------*/
 
 #endif
