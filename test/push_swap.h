@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/06 19:53:34 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:21:23 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ int		top(t_list *stack);
 
 /*-----------------sorting.c----------------*/
 // void	selection_sort(t_list **stack_a);
-int		is_not_sort(t_list *stack);
+int		is_not_sort(t_list *head);
 void	sort2_3(t_list **stack, int size);
 int		find_min(t_list *stack);
-void	p_s_a(t_list **stack_a, t_list **stack_b); 
+void	push_sort_a(t_list **stack_a, t_list **stack_b);
+int		place_min(t_list *head);
+int		find_closest(t_list *head, int pivot);
 /*------------------------------------------*/
 
 #endif

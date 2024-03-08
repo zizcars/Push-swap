@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:17 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/06 19:54:26 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:21:12 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,19 @@
 // 		p_(&stack_b, stack_a, 'a', 1);
 // }
 
-/// @brief Check if the stack is sorted or not
-/// @param stack 
+/// @brief Check if the linked list is sorted or not.
+/// @param head of linked list
 /// @return 0 if the stack is sorted else 1
-int is_not_sort(t_list *stack)
+int is_not_sort(t_list *head)
 {
 	t_list *tmp;
 	int tmp_a;
 	int first;
-	if (stack == NULL || stack->next == NULL)
+	if (head == NULL || head->next == NULL)
 		return (0);
-	while (stack)
+	while (head)
 	{
-		tmp = stack;
+		tmp = head;
 		first = *(int *)tmp->content;
 		while (tmp)
 		{
@@ -60,7 +60,7 @@ int is_not_sort(t_list *stack)
 				return (1);
 			tmp = tmp->next;
 		}
-		stack = stack->next;
+		head = head->next;
 	}
 	return (0);
 }
@@ -118,7 +118,7 @@ int find_min(t_list *head)
 /// @brief Push from stack A to stack B and let just 3 elements in stack A and sort them.
 /// @param stack_a source stack A
 /// @param stack_b	Distnetion stack B
-void	p_s_a(t_list **stack_a, t_list **stack_b)
+void	push_sort_a(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
 
@@ -129,4 +129,46 @@ void	p_s_a(t_list **stack_a, t_list **stack_b)
 		size--;
 	}
 	sort2_3(stack_a, size);
+}
+
+/// @brief find the place of the minimum number in linked list.
+/// @param head of the linked list
+/// @return The place of the minimun number
+int	place_min(t_list *head)
+{
+	int min_index;
+	int min;
+	int tmp;
+
+	min_index = 0;
+	min = find_min(head);
+	while(head)
+	{
+		tmp = *(int *)head->content;
+		if (tmp == min)
+			return (min_index);
+		min_index++;
+		head = head->next;
+	}
+	return (min_index);
+}
+
+/// @brief find the closest number to a pivot.
+/// @param head of linked list
+/// @param pivot 
+/// @return the closest number to pivot
+int	find_closest(t_list *head, int pivot)
+{
+	int tmp1;
+	int close;
+
+	close = find_min(head);
+	while(head)
+	{
+		tmp1 = *(int *)head->content;
+		if(tmp1 < pivot && tmp1 > close)
+			close = tmp1;
+		head = head->next;
+	}
+	return (close);
 }
