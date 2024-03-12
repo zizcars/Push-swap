@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/11 18:24:29 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/12 21:27:15 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ typedef struct number_
 	int	error;
 } number;
 
-/*----------------tooles.c--------------*/
+/*---------------- tooles.c --------------*/
 t_list	*c_node(int content);
 int		check_d(t_list *head, int data);
 void	c_stack(int argc, char **argv, t_list **stack_a);
 /*-------------------------------------*/
 
-/*----------new_atoi.c--------------*/
+/*---------- new_atoi.c --------------*/
 number	new_atoi(const char *str);
 /*----------------------------------*/
 
-/*------------------------rules.c--------------------------*/
+/*------------------------ rules.c --------------------------*/
 void	s_(t_list **stack, char c, int per);
 void	p_(t_list **s_src, t_list **s_dst, char c, int per);
 void	r_(t_list **stack, char c, int per);
@@ -45,7 +45,7 @@ void	rrr(t_list **stack_a, t_list **stack_b);
 int		top(t_list *stack);
 /*----------------------------------------------------------*/
 
-/*-----------------sorting.c----------------*/
+/*----------------- sorting.c ----------------*/
 // void	selection_sort(t_list **stack_a);
 int		is_not_sort(t_list *head);
 void	sort2_3(t_list **stack, int size);
@@ -58,4 +58,7 @@ int		find_max(t_list *head);
 void	go_to(t_list **stack, int number);
 /*------------------------------------------*/
 
+/*------------------ sort.c -----------------------*/
+int find_medium(t_list *stack);
+/*-----------------------------------------------*/
 #endif

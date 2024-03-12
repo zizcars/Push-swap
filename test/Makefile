@@ -1,7 +1,7 @@
 
 CC = cc 
 CFLAGS= -Wall -Wextra -Werror -fsanitize=address
-CFILES= new_atoi.c tooles.c test.c rules.c sorting.c
+CFILES= new_atoi.c tooles.c test.c rules.c sorting.c sort_tooles.c
 OFILES=$(CFILES:.c=.o)
 NAME=test
 LIBNAME=libft/libft.a ft_printf/libftprintf.a

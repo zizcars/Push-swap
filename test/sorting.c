@@ -6,40 +6,40 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:17 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/12 14:15:43 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/12 21:39:09 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void selection_sort(t_list **stack_a) // in 6 takes 36 operation
-{
-	if (*stack_a == NULL || (*stack_a)->next == NULL)
-		return ;
-	int smal;
-	// int tmp;
-	t_list *stack_b;
-	// t_list *ptr;
-	stack_b = NULL;
-	while ((*stack_a)->next)
-	{
-		// smal = top(*stack_a);
-		// r_(stack_a, 'a', 1);
-		// tmp = top(*stack_a);
-		// while (tmp != smal)
-		// {
-		// 	if (tmp < smal)
-		// 		smal = tmp;
-		// 	r_(stack_a, 'a', 1);
-		// 	tmp = top(*stack_a);
-		// }
-		smal = find_min(*stack_a);
-		go_to(stack_a, smal);
-		p_(stack_a, &stack_b, 'b', 1);
-	}
-	while (stack_b)
-		p_(&stack_b, stack_a, 'a', 1);
-}
+// void selection_sort(t_list **stack_a) // in 6 takes 36 operation
+// {
+// 	if (*stack_a == NULL || (*stack_a)->next == NULL)
+// 		return ;
+// 	int smal;
+// 	// int tmp;
+// 	t_list *stack_b;
+// 	// t_list *ptr;
+// 	stack_b = NULL;
+// 	while ((*stack_a)->next)
+// 	{
+// 		// smal = top(*stack_a);
+// 		// r_(stack_a, 'a', 1);
+// 		// tmp = top(*stack_a);
+// 		// while (tmp != smal)
+// 		// {
+// 		// 	if (tmp < smal)
+// 		// 		smal = tmp;
+// 		// 	r_(stack_a, 'a', 1);
+// 		// 	tmp = top(*stack_a);
+// 		// }
+// 		smal = find_min(*stack_a);
+// 		go_to(stack_a, smal);
+// 		p_(stack_a, &stack_b, 'b', 1);
+// 	}
+// 	while (stack_b)
+// 		p_(&stack_b, stack_a, 'a', 1);
+// }
 
 /// @brief Check if the linked list is sorted or not.
 /// @param head of linked list
@@ -244,6 +244,5 @@ void sort_stack(t_list **stack_a, t_list **stack_b)
 	}
 	min = find_min(*stack_a);
 	go_to(stack_a, min);
-	if (is_not_sort(*stack_a))
-		sort_stack(stack_a, stack_b);
 }
+
