@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/13 14:55:22 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:21:29 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ int		find_medium(t_list *stack);
 /*------------------ sort.c -----------------------*/
 int		find_smaller(t_list *head, int pivot);
 void	push_to_b(t_list **stack_a, t_list **stack_b);
+void final_sort(t_list **stack_a, t_list **stack_b);
 /*-----------------------------------------------*/
 #endif
