@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/12 21:27:15 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/13 14:55:22 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,11 @@ int		find_max(t_list *head);
 void	go_to(t_list **stack, int number);
 /*------------------------------------------*/
 
+/*------------------ sort_tooles.c -----------------------*/
+int		find_medium(t_list *stack);
+/*-----------------------------------------------*/
 /*------------------ sort.c -----------------------*/
-int find_medium(t_list *stack);
+int		find_smaller(t_list *head, int pivot);
+void	push_to_b(t_list **stack_a, t_list **stack_b);
 /*-----------------------------------------------*/
 #endif
