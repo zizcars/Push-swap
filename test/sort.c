@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/14 21:52:28 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:00:34 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,6 @@ bestmove take_smale_moves(t_list *stack_a, t_list *stack_b)
 	return (src);
 }
 
-void	new_go_to(t_list **stack)
-{
-	
-}
+// voidnew_go_to(t_list **stack)
+// {
+// }
