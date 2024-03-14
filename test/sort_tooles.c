@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:15:54 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/13 13:21:24 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:55:01 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ min_big cal_min_big(t_list *stack, int medium)
 	}
 	return (n);
 }
-/// @brief find the medium number in a stack 
+
+/// @brief find the medium number in a stack
 /// @param stack of numbers
 /// @return the medium number
 int find_medium(t_list *stack)

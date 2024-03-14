@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/14 22:07:34 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/14 23:24:41 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,23 +102,6 @@ ex take_smale_moves(t_list *head)
 	return src
 */
 
-// void final_sort(t_list **stack_a, t_list **stack_b)
-// {
-// 	int size;
-// 	int close;
-// 	if (is_not_sort(*stack_a) == 0)
-// 		return;
-// 	size = ft_lstsize(*stack_a);
-// 	if (size == 1)
-// 		return;
-// 	else if (size <= 3)
-// 	{
-// 		sort2_3(stack_a, size);
-// 		return;
-// 	}
-// 	push_to_b(stack_a, stack_b);
-// }
-
 // typedef struct bestmove_
 // {
 // 	int number;
@@ -134,9 +117,9 @@ ex take_smale_moves(t_list *head)
 /// @param stack_b
 /// @param number_in_b the number in b to search for its right position in stack_a
 /// @return all the data that has add to bestmove data structer
-bestmove cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b)
+movedata cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b)
 {
-	bestmove data;
+	movedata data;
 	int sizea;
 	int sizeb;
 
@@ -162,7 +145,7 @@ bestmove cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b)
 	{
 		if (data.moves_a > data.moves_b)
 			data.moves_ab = data.moves_b;
-		else
+		else if (data.moves_a < data.moves_b)
 			data.moves_ab = data.moves_a;
 	}
 	return (data);
@@ -172,10 +155,10 @@ bestmove cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b)
 /// @param stack_a
 /// @param stack_b
 /// @return the small data that is found about a number
-bestmove take_smale_moves(t_list *stack_a, t_list *stack_b)
+movedata take_smale_moves(t_list *stack_a, t_list *stack_b)
 {
-	bestmove src;
-	bestmove tmp;
+	movedata src;
+	movedata tmp;
 	t_list *ptr;
 
 	ptr = stack_b;
@@ -194,7 +177,73 @@ bestmove take_smale_moves(t_list *stack_a, t_list *stack_b)
 	}
 	return (src);
 }
+/// @brief it rule is to applice the information in movedata variable.
+/// @param stack_a 
+/// @param stack_b 
+/// @param data the movedata 
+void new_go_to(t_list **stack_a, t_list **stack_b, movedata data)
+{
+	while (data.moves_ab > 0)
+	{
+		if (data.r_or_rr_a == 1 && data.r_or_rr_b == 1)
+			rr(stack_a, stack_b);
+		else if (data.r_or_rr_a == -1 && data.r_or_rr_b == -1)
+			rrr(stack_a, stack_b);
+		data.moves_ab--;
+		data.moves_a--;
+		data.moves_b--;
+	}
+	while (data.moves_a > 0)
+	{
+		if (data.r_or_rr_a == 1)
+			r_(stack_a, 'a', 1);
+		else
+			rr_(stack_a, 'a', 1);
+		data.moves_a--;
+	}
+	while (data.moves_b > 0)
+	{
+		if (data.r_or_rr_b == 1)
+			r_(stack_b, 'a', 1);
+		else
+			rr_(stack_b, 'a', 1);
+		data.moves_b--;
+	}
+}
 
-// voidnew_go_to(t_list **stack)
-// {
-// }
+// there is a problem in find_closest you have to solve it
+
+void final_sort(t_list **stack_a, t_list **stack_b)
+{
+	int size;
+	movedata data;
+
+	if (is_not_sort(*stack_a) == 0)
+		return;
+	size = ft_lstsize(*stack_a);
+	if (size == 1)
+		return;
+	else if (size <= 3)
+	{
+		sort2_3(stack_a, size);
+		return;
+	}
+	push_to_b(stack_a, stack_b);
+	// ft_printf("hello10");
+	t_list *tmp;
+	while (*stack_b)
+	{
+		data = take_smale_moves(*stack_a, *stack_b);
+		new_go_to(stack_a, stack_b, data);
+		p_(stack_b, stack_a, 'a', 1);
+		tmp = *stack_a;
+		while (tmp)
+		{
+		ft_printf("%d ", *(int *)tmp->content);
+		tmp = tmp->next;
+		}
+		sleep(10);
+	}
+	go_to(stack_a, find_min(*stack_a));
+	// new_go_to(stack_a, NULL, cal_moves(*stack_a, NULL, find_min(*stack_a)));
+}

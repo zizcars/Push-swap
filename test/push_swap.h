@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/14 22:07:41 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/14 22:30:31 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	go_to(t_list **stack, int number);
 int		find_medium(t_list *stack);
 /*-----------------------------------------------*/
 /*------------------ sort.c -----------------------*/
-typedef struct bestmove_
+typedef struct movedata_
 {
 	int number;
 	int moves_a;
@@ -70,12 +70,12 @@ typedef struct bestmove_
 	int moves_ab;
 	int r_or_rr_a; // 1 for r_ or -1 for rr_
 	int r_or_rr_b;
-} bestmove;
+} movedata;
 
 int		find_smaller(t_list *head, int pivot);
 void	push_to_b(t_list **stack_a, t_list **stack_b);
-// void final_sort(t_list **stack_a, t_list **stack_b);
-bestmove cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b);
-bestmove take_smale_moves(t_list *stack_a, t_list *stack_b);
+void final_sort(t_list **stack_a, t_list **stack_b);
+movedata cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b);
+movedata take_smale_moves(t_list *stack_a, t_list *stack_b);
 /*-----------------------------------------------*/
 #endif
