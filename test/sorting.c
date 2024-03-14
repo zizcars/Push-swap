@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:17 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/12 21:39:09 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/14 20:52:50 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,8 @@ int find_closest(t_list *head, int pivot)
 	int tmp1;
 	int close;
 	close = find_max(head);
+	if (pivot == close)
+		return (find_min(head));
 	while (head)
 	{
 		tmp1 = top(head);
