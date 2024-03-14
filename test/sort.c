@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/13 15:25:53 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:22:06 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,14 @@ void push_to_b(t_list **stack_a, t_list **stack_b)
 	if (size <= 3)
 		sort2_3(stack_a, size);
 }
+
+
 void final_sort(t_list **stack_a, t_list **stack_b)
 {
 	int size;
 	int close;
+	int top_b;
+	int max;
 
 	if (is_not_sort(*stack_a) == 0)
 		return;
@@ -77,12 +81,17 @@ void final_sort(t_list **stack_a, t_list **stack_b)
 		sort2_3(stack_a, size);
 		return;
 	}
+	max = find_max(*stack_a);
 	push_to_b(stack_a, stack_b);
-	// while (*stack_b)
-	// {
-	// 	close = find_closest(*stack_a, top(*stack_b));
-	// 	go_to(stack_a, close);
-	// 	p_(stack_b, stack_a, 'a', 1);
-	// }
-	// go_to(stack_a, find_min(*stack_a));
+	while (*stack_b)
+	{
+		top_b = top(*stack_b);
+		if (top_b == max)
+			close = find_min(*stack_a);
+		else
+			close = find_closest(*stack_a, top_b);
+		go_to(stack_a, close);
+		p_(stack_b, stack_a, 'a', 1);
+	}
+	go_to(stack_a, find_min(*stack_a));
 }

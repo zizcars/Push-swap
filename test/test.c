@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:03:24 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/13 15:24:21 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:22:50 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int main(int argc, char **argv)
 		ft_printf("not sorted\n");
 	else
 		ft_printf("sorted\n");
-	while (stack_a)
-	{
-		ft_printf("%d ", *(int *)stack_a->content);
-		stack_a = stack_a->next;
-	}
+	// while (stack_a)
+	// {
+	// 	ft_printf("%d ", *(int *)stack_a->content);
+	// 	stack_a = stack_a->next;
+	// }
 	// ft_printf("\nb:");
 	// while (stack_b)
 	// {
