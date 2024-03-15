@@ -6,17 +6,11 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:15:54 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 19:46:59 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:57:25 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-typedef struct min_big_
-{
-	int min;
-	int big;
-} min_big;
 
 /// @brief calculate who many numbers n are bigger then and who many are smaller then
 /// @param stack of numbers
@@ -62,4 +56,55 @@ int find_medium(t_list *stack)
 		stack = stack->next;
 	}
 	return (medium);
+}
+
+/// @brief Find the number that is smaller than pivot in a linked list.
+/// @param head
+/// @param pivot
+/// @return The first small number than pivot.if there is no number return pivot.
+int find_smaller(t_list *head, int pivot)
+{
+	int tmp;
+
+	while (head)
+	{
+		tmp = *(int *)head->content;
+		if (tmp < pivot)
+			return (tmp);
+		head = head->next;
+	}
+	return (pivot);
+}
+
+/// @brief Find the smallest number in the linked list.
+/// @param head of linked list
+/// @return the smallest number
+int find_min(t_list *head)
+{
+	int min;
+	int tmp;
+	min = top(head);
+	while (head)
+	{
+		tmp = top(head);
+		if (min > tmp)
+			min = tmp;
+		head = head->next;
+	}
+	return (min);
+}
+
+int find_max(t_list *head)
+{
+	int max;
+	int tmp;
+	max = top(head);
+	while (head)
+	{
+		tmp = top(head);
+		if (max < tmp)
+			max = tmp;
+		head = head->next;
+	}
+	return (max);
 }

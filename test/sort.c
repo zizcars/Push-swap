@@ -6,29 +6,12 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 20:16:23 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:48:21 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/// @brief Find the number that is smaller than pivot in a linked list.
-/// @param head
-/// @param pivot
-/// @return The first small number than pivot.if there is no number return pivot.
-int find_smaller(t_list *head, int pivot)
-{
-	int tmp;
-
-	while (head)
-	{
-		tmp = *(int *)head->content;
-		if (tmp < pivot)
-			return (tmp);
-		head = head->next;
-	}
-	return (pivot);
-}
 // Note: You can change it to sort stack b in pushing in stad of push just
 // smaller than pivot push the smallest first and the next ...
 /// @brief Push the element from stack A to stack B starting from less first
@@ -48,7 +31,7 @@ void push_to_b(t_list **stack_a, t_list **stack_b)
 	while (ptr && smaller != medium && size > 3)
 	{
 		smaller = find_smaller(*stack_a, medium);
-		go_to(stack_a, smaller); // you can change it to new_go_to.
+		go_to(stack_a, smaller);
 		p_(stack_a, stack_b, 'b', 1);
 		ptr = *stack_a;
 		ptr = ptr->next;
@@ -63,55 +46,6 @@ void push_to_b(t_list **stack_a, t_list **stack_b)
 		sort2_3(stack_a, size);
 }
 
-/*
-			Best move function.
-2 6 8 9 1 4 7
-3 5 10
-ex int movesB, movesA, movesAB, r_or_rr
-ex cal_moves(t_list *head, number number)
-	// stack : B
-	// 	moves > size / 2
-	// 		size - moves
-	// 	moves < size / 2
-	// 		moves
-	// stack : A
-	// 	moves > size / 2
-	// 		size - moves
-	// 	moves < size / 2
-	// 		moves
-	if ((moves B and moves A > size / 2) or (moves B and moves A < size / 2))
-		if moves B > moves A
-			rr of moves A
-		else
-			rr of moves B
-	else if ((moves B and moves A < size / 2) or (moves B and moves A < size / 2))
-		if moves B < moves A
-			rrr of moves A
-		else
-			rrr of moves B
-
-ex take_smale_moves(t_list *head)
-	src = cal_moves(head->content)
-	while(head)
-		tmp = cal_moves(head->content)
-		if (tmp.movesAB != 0)
-			if(tmp.movesAB < src.movesAB)
-				src = tmp
-		else if(tmp.movesA + tmp.movesB < src.movesA + src.movesB)
-			src = tmp;
-	return src
-*/
-
-// typedef struct bestmove_
-// {
-// 	int number;
-// 	int moves_a;
-// 	int moves_b;
-// 	int moves_ab;
-// 	int r_or_rr_a; // 0 for r_ or 1 for rr_
-// 	int r_or_rr_b;
-// } bestmove;
-
 /// @brief this function fill the data about how many moves and the best ones for a number.
 /// @param stack_a
 /// @param stack_b
@@ -122,15 +56,12 @@ movedata cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b)
 	movedata data;
 	int sizea;
 	int sizeb;
-	int close_b;
 
-	close_b = find_closest(stack_a, number_in_b);
-	// ft_printf("close_b:%d \n", close_b);
 	sizea = ft_lstsize(stack_a);
 	sizeb = ft_lstsize(stack_b);
 	data.number = number_in_b;
 	data.moves_b = place_of_n(stack_b, number_in_b);
-	data.moves_a = place_of_n(stack_a, close_b);
+	data.moves_a = place_of_n(stack_a, find_closest(stack_a, number_in_b));
 	data.moves_ab = 0;
 	data.r_or_rr_a = 1;
 	data.r_or_rr_b = 1;
@@ -172,31 +103,12 @@ movedata take_smale_moves(t_list *stack_a, t_list *stack_b)
 	while (ptr)
 	{
 		tmp = cal_moves(stack_a, stack_b, top(ptr));
-		// ft_printf("tmp :the best number: %d\n", tmp.number);
-		// ft_printf("tmp :the best movesa: %d\n", tmp.moves_a);
-		// ft_printf("tmp :the best movesb: %d\n", tmp.moves_b);
-		// ft_printf("tmp :the best movesab: %d\n", tmp.moves_ab);
-		// ft_printf("tmp :the best r or rr a: %d\n", tmp.r_or_rr_a);
-		// ft_printf("tmp :the best r or rr b: %d\n", tmp.r_or_rr_b);
-	// ft_printf("\n");
-		// if (tmp.moves_ab > 0)
-		// {
-		// 	if(tmp.moves_ab != 0 && tmp.moves_ab < src.moves_ab)
-		// 		src = tmp;
-		// }
 		t = tmp.moves_a + tmp.moves_b - tmp.moves_ab;
 		s = src.moves_a + src.moves_b - src.moves_ab;
 		if (t < s)
 			src = tmp;
 		ptr = ptr->next;
 	}
-	// ft_printf("src :the best number: %d\n", src.number);
-	// ft_printf("src :the best movesa: %d\n", src.moves_a);
-	// ft_printf("src :the best movesb: %d\n", src.moves_b);
-	// ft_printf("src :the best movesab: %d\n", src.moves_ab);
-	// ft_printf("src :the best r or rr a: %d\n", src.r_or_rr_a);
-	// ft_printf("src :the best r or rr b: %d\n", src.r_or_rr_b);
-	// ft_printf("\n");
 	return (src);
 }
 
@@ -251,46 +163,11 @@ void final_sort(t_list **stack_a, t_list **stack_b)
 		return;
 	}
 	push_to_b(stack_a, stack_b);
-	// ft_printf("hello10");
-	// t_list *tmp;
-	// t_list *tmp1;
-	// tmp1 = *stack_b;
-	// tmp = *stack_a;
-	// ft_printf("\na:");
-	// while (tmp)
-	// {
-	// 	ft_printf("%d ", *(int *)tmp->content);
-	// 	tmp = tmp->next;
-	// }
-	// ft_printf("\nb:");
-	// while (tmp1)
-	// {
-	// 	ft_printf("%d ", *(int *)tmp1->content);
-	// 	tmp1 = tmp1->next;
-	// }
-	// ft_printf("\n");
 	while (*stack_b)
 	{
 		data = take_smale_moves(*stack_a, *stack_b);
 		new_go_to(stack_a, stack_b, data);
 		p_(stack_b, stack_a, 'a', 1);
-		// tmp1 = *stack_b;
-		// tmp = *stack_a;
-		// ft_printf("\na:");
-		// while (tmp)
-		// {
-		// 	ft_printf("%d ", *(int *)tmp->content);
-		// 	tmp = tmp->next;
-		// }
-		// ft_printf("\nb:");
-		// while (tmp1)
-		// {
-		// 	ft_printf("%d ", *(int *)tmp1->content);
-		// 	tmp1 = tmp1->next;
-		// }
-		// ft_printf("\n");
-		// 	// sleep(10);
 	}
 	go_to(stack_a, find_min(*stack_a));
-	// new_go_to(stack_a, NULL, cal_moves(*stack_a, NULL, find_min(*stack_a)));
 }

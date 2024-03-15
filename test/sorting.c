@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:17 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 18:06:54 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:57:32 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,39 +115,6 @@ void push_sort_a(t_list **stack_a, t_list **stack_b)
 	}
 	sort2_3(stack_a, size);
 }
-/*--------------------------------------------------------------*/
-/// @brief Find the smallest number in the linked list.
-/// @param head of linked list
-/// @return the smallest number
-int find_min(t_list *head)
-{
-	int min;
-	int tmp;
-	min = top(head);
-	while (head)
-	{
-		tmp = top(head);
-		if (min > tmp)
-			min = tmp;
-		head = head->next;
-	}
-	return (min);
-}
-
-int find_max(t_list *head)
-{
-	int max;
-	int tmp;
-	max = top(head);
-	while (head)
-	{
-		tmp = top(head);
-		if (max < tmp)
-			max = tmp;
-		head = head->next;
-	}
-	return (max);
-}
 
 /// @brief find the closest number to a pivot.
 /// @param head of linked list
@@ -209,14 +176,12 @@ void go_to(t_list **stack, int number)
 		return;
 	n_top = top(*stack);
 	size = ft_lstsize(*stack);
-	// tmp = moves;
 	while (number != n_top)
 	{
 		if (moves <= size / 2)
 			r_(stack, 'a', 1);
 		else if (moves > size / 2)
 			rr_(stack, 'a', 1);
-		// tmp--;
 		n_top = top(*stack);
 	}
 }

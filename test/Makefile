@@ -1,9 +1,27 @@
 
 CC = cc 
 CFLAGS= -Wall -Wextra -Werror -fsanitize=address #remove the last flage
-CFILES= new_atoi.c tooles.c test.c rules.c sorting.c sort_tooles.c sort.c
+CFILES= main.c \
+		new_atoi.c \
+		tooles.c \
+		rules.c \
+		sorting.c \
+		sort_tooles.c \
+		sort.c
+BCFILES=checker_bonus.c \
+		new_atoi.c \
+		tooles.c \
+		rules.c \
+		sorting.c \
+		sort_tooles.c \
+		sort.c\
+		get_next_line.c \
+		get_next_line_utils.c \
+
+BOFILES=$(BCFILES:.c=.o) 
 OFILES=$(CFILES:.c=.o)
-NAME=test
+NAME=push_swap #CHENGE IT 
+BNAME=checker
 LIBNAME=libft/libft.a ft_printf/libftprintf.a
 
 all: $(NAME) 
@@ -18,13 +36,17 @@ libs:
 	cd libft && make && make bonus
 	cd ft_printf && make
 
+bonus: $(BOFILES) all  #how about use just the checker without mandantory
+	$(CC) $(CFLAGS) $(BOFILES) $(LIBNAME) -o $(BNAME)
+
+
 clean:
-	rm -f $(OFILES)
+	rm -f $(OFILES) $(BOFILES)
 	cd libft && make clean
 	cd ft_printf && make clean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BNAME)
 	cd libft && make fclean
 	cd ft_printf && make fclean 
 

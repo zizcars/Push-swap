@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 19:49:32 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:58:00 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,25 @@ int		top(t_list *stack);
 // void	selection_sort(t_list **stack_a);
 int		is_not_sort(t_list *head);
 void	sort2_3(t_list **stack, int size);
-int		find_min(t_list *stack);
 void	push_sort_a(t_list **stack_a, t_list **stack_b);
 int		place_of_n(t_list *head, int n);
 int		find_closest(t_list *head, int pivot);
 void	sort_stack(t_list **stack_a, t_list **stack_b);
-int		find_max(t_list *head);
 void	go_to(t_list **stack, int number);
 /*------------------------------------------*/
 
 /*------------------ sort_tooles.c -----------------------*/
+typedef struct min_big_
+{
+	int min;
+	int big;
+} min_big;
+
+min_big cal_min_big(t_list *stack, int medium);
 int		find_medium(t_list *stack);
+int		find_smaller(t_list *head, int pivot);
+int		find_min(t_list *stack);
+int		find_max(t_list *head);
 /*-----------------------------------------------*/
 /*------------------ sort.c -----------------------*/
 typedef struct movedata_
@@ -72,7 +80,6 @@ typedef struct movedata_
 	int r_or_rr_b;
 } movedata;
 
-int		find_smaller(t_list *head, int pivot);
 void	push_to_b(t_list **stack_a, t_list **stack_b);
 void final_sort(t_list **stack_a, t_list **stack_b);
 movedata cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b);

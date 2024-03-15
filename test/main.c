@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:03:24 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 19:27:43 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 21:50:09 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+int main(int count, char **numbers)
 {
 	t_list *stack_a;
 	t_list *stack_b;
+
 	stack_b = NULL;
 	stack_a = NULL;
-	if (argc == 1)
+	if (count == 1)
 		exit(0);
-	c_stack(argc, argv, &stack_a);
-	// rrr(&stack_a, &stack_b);
-	// push_to_b(&stack_a, &stack_b);
-	// rr(&stack_a, &stack_b);
-	// rr(&stack_a, &stack_b);
-	// rrr(&stack_a, &stack_b);
-	// // movedata a = take_smale_moves(stack_a, stack_b);
-	// ft_printf("the best number: %d\n", a.number);
-	// ft_printf("the best movesa: %d\n", a.moves_a);
-	// ft_printf("the best movesb: %d\n", a.moves_b);
-	// ft_printf("the best movesab: %d\n", a.moves_ab);
-	// ft_printf("the best r or rr a: %d\n", a.r_or_rr_a);
-	// ft_printf("the best r or rr b: %d\n", a.r_or_rr_b);
+	c_stack(count, numbers, &stack_a);
 	final_sort(&stack_a, &stack_b);
-	if (is_not_sort(stack_a) == 1)
+	if (is_not_sort(stack_a))
 		ft_printf("not sorted\n");
 	else
 		ft_printf("sorted\n");
+	// ft_lstclear(&stack_a, free);
 	// while (stack_a)
 	// {
 	// 	ft_printf("%d ", *(int *)stack_a->content);
