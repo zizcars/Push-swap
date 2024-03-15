@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 14:55:17 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/14 22:43:21 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:06:54 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,10 +157,12 @@ int find_closest(t_list *head, int pivot)
 {
 	int tmp1;
 	int close;
+	int min;
 
+	min = find_min(head);
 	close = find_max(head);
-	if (pivot == close)
-		return (find_min(head));
+	if (pivot > close)
+		return (min);
 	while (head)
 	{
 		tmp1 = top(head);
@@ -251,4 +253,3 @@ void sort_stack(t_list **stack_a, t_list **stack_b)
 	min = find_min(*stack_a);
 	go_to(stack_a, min);
 }
-

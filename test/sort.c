@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/14 23:24:41 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:11:29 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void push_to_b(t_list **stack_a, t_list **stack_b)
 	while (ptr && smaller != medium && size > 3)
 	{
 		smaller = find_smaller(*stack_a, medium);
-		go_to(stack_a, smaller);
+		go_to(stack_a, smaller); // you can change it to new_go_to.
 		p_(stack_a, stack_b, 'b', 1);
 		ptr = *stack_a;
 		ptr = ptr->next;
@@ -122,12 +122,15 @@ movedata cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b)
 	movedata data;
 	int sizea;
 	int sizeb;
+	int close_b;
 
+	close_b = find_closest(stack_a, number_in_b);
+	// ft_printf("close_b:%d \n", close_b);
 	sizea = ft_lstsize(stack_a);
 	sizeb = ft_lstsize(stack_b);
 	data.number = number_in_b;
 	data.moves_b = place_of_n(stack_b, number_in_b);
-	data.moves_a = place_of_n(stack_a, find_closest(stack_a, number_in_b));
+	data.moves_a = place_of_n(stack_a, close_b);
 	data.moves_ab = 0;
 	data.r_or_rr_a = 1;
 	data.r_or_rr_b = 1;
@@ -163,9 +166,18 @@ movedata take_smale_moves(t_list *stack_a, t_list *stack_b)
 
 	ptr = stack_b;
 	src = cal_moves(stack_a, stack_b, top(stack_b));
+	if (src.moves_a + src.moves_b == 0 || src.moves_a + src.moves_b == 1)
+		return (src);
 	while (ptr)
 	{
 		tmp = cal_moves(stack_a, stack_b, top(ptr));
+		// ft_printf("the best number: %d\n", tmp.number);
+		// ft_printf("the best movesa: %d\n", tmp.moves_a);
+		// ft_printf("the best movesb: %d\n", tmp.moves_b);
+		// ft_printf("the best movesab: %d\n", tmp.moves_ab);
+		// ft_printf("the best r or rr a: %d\n", tmp.r_or_rr_a);
+		// ft_printf("the best r or rr b: %d\n", tmp.r_or_rr_b);
+		// ft_printf("\n");
 		if (tmp.moves_ab != 0)
 		{
 			if (tmp.moves_ab < src.moves_ab)
@@ -177,10 +189,11 @@ movedata take_smale_moves(t_list *stack_a, t_list *stack_b)
 	}
 	return (src);
 }
+
 /// @brief it rule is to applice the information in movedata variable.
-/// @param stack_a 
-/// @param stack_b 
-/// @param data the movedata 
+/// @param stack_a
+/// @param stack_b
+/// @param data the movedata
 void new_go_to(t_list **stack_a, t_list **stack_b, movedata data)
 {
 	while (data.moves_ab > 0)
@@ -204,15 +217,14 @@ void new_go_to(t_list **stack_a, t_list **stack_b, movedata data)
 	while (data.moves_b > 0)
 	{
 		if (data.r_or_rr_b == 1)
-			r_(stack_b, 'a', 1);
+			r_(stack_b, 'b', 1);
 		else
-			rr_(stack_b, 'a', 1);
+			rr_(stack_b, 'b', 1);
 		data.moves_b--;
 	}
 }
 
 // there is a problem in find_closest you have to solve it
-
 void final_sort(t_list **stack_a, t_list **stack_b)
 {
 	int size;
@@ -230,19 +242,44 @@ void final_sort(t_list **stack_a, t_list **stack_b)
 	}
 	push_to_b(stack_a, stack_b);
 	// ft_printf("hello10");
-	t_list *tmp;
+	// t_list *tmp;
+	// t_list *tmp1;
+	// tmp1 = *stack_b;
+	// tmp = *stack_a;
+	// ft_printf("\na:");
+	// while (tmp)
+	// {
+	// 	ft_printf("%d ", *(int *)tmp->content);
+	// 	tmp = tmp->next;
+	// }
+	// ft_printf("\nb:");
+	// while (tmp1)
+	// {
+	// 	ft_printf("%d ", *(int *)tmp1->content);
+	// 	tmp1 = tmp1->next;
+	// }
+	// ft_printf("\n");
 	while (*stack_b)
 	{
 		data = take_smale_moves(*stack_a, *stack_b);
 		new_go_to(stack_a, stack_b, data);
 		p_(stack_b, stack_a, 'a', 1);
-		tmp = *stack_a;
-		while (tmp)
-		{
-		ft_printf("%d ", *(int *)tmp->content);
-		tmp = tmp->next;
-		}
-		sleep(10);
+		// tmp1 = *stack_b;
+		// tmp = *stack_a;
+		// ft_printf("\na:");
+		// while (tmp)
+		// {
+		// 	ft_printf("%d ", *(int *)tmp->content);
+		// 	tmp = tmp->next;
+		// }
+		// ft_printf("\nb:");
+		// while (tmp1)
+		// {
+		// 	ft_printf("%d ", *(int *)tmp1->content);
+		// 	tmp1 = tmp1->next;
+		// }
+		// ft_printf("\n");
+		// 	// sleep(10);
 	}
 	go_to(stack_a, find_min(*stack_a));
 	// new_go_to(stack_a, NULL, cal_moves(*stack_a, NULL, find_min(*stack_a)));
