@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/14 22:30:31 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:49:32 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void	push_to_b(t_list **stack_a, t_list **stack_b);
 void final_sort(t_list **stack_a, t_list **stack_b);
 movedata cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b);
 movedata take_smale_moves(t_list *stack_a, t_list *stack_b);
+void new_go_to(t_list **stack_a, t_list **stack_b, movedata data);
 /*-----------------------------------------------*/
 #endif

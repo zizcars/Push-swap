@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:03:24 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 18:09:03 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:27:43 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ int main(int argc, char **argv)
 	if (argc == 1)
 		exit(0);
 	c_stack(argc, argv, &stack_a);
+	// rrr(&stack_a, &stack_b);
 	// push_to_b(&stack_a, &stack_b);
-	// p_(&stack_b, &stack_a, 'a', 1);
-	// movedata a = take_smale_moves(stack_a, stack_b);
+	// rr(&stack_a, &stack_b);
+	// rr(&stack_a, &stack_b);
+	// rrr(&stack_a, &stack_b);
+	// // movedata a = take_smale_moves(stack_a, stack_b);
 	// ft_printf("the best number: %d\n", a.number);
 	// ft_printf("the best movesa: %d\n", a.moves_a);
 	// ft_printf("the best movesb: %d\n", a.moves_b);

@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:15:54 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/14 22:55:01 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:46:59 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ min_big cal_min_big(t_list *stack, int medium)
 	n.big = 0;
 	while (stack)
 	{
-		if (medium < *(int *)stack->content)
+		if (medium < top(stack))
 			n.min++;
-		else if (medium > *(int *)stack->content)
+		else if (medium > top(stack))
 			n.big++;
 		stack = stack->next;
 	}

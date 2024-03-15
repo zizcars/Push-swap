@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 18:11:29 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:16:23 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,11 +144,11 @@ movedata cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b)
 		data.moves_b = sizeb - data.moves_b;
 		data.r_or_rr_b = -1;
 	}
-	if ((data.r_or_rr_a == -1 && data.r_or_rr_b == -1) || (data.r_or_rr_a == 1 && data.r_or_rr_b == 1))
+	if (data.r_or_rr_a == data.r_or_rr_b && data.moves_a > 0 && data.moves_b > 0)
 	{
 		if (data.moves_a > data.moves_b)
 			data.moves_ab = data.moves_b;
-		else if (data.moves_a < data.moves_b)
+		else
 			data.moves_ab = data.moves_a;
 	}
 	return (data);
@@ -163,7 +163,8 @@ movedata take_smale_moves(t_list *stack_a, t_list *stack_b)
 	movedata src;
 	movedata tmp;
 	t_list *ptr;
-
+	int t;
+	int s;
 	ptr = stack_b;
 	src = cal_moves(stack_a, stack_b, top(stack_b));
 	if (src.moves_a + src.moves_b == 0 || src.moves_a + src.moves_b == 1)
@@ -171,22 +172,31 @@ movedata take_smale_moves(t_list *stack_a, t_list *stack_b)
 	while (ptr)
 	{
 		tmp = cal_moves(stack_a, stack_b, top(ptr));
-		// ft_printf("the best number: %d\n", tmp.number);
-		// ft_printf("the best movesa: %d\n", tmp.moves_a);
-		// ft_printf("the best movesb: %d\n", tmp.moves_b);
-		// ft_printf("the best movesab: %d\n", tmp.moves_ab);
-		// ft_printf("the best r or rr a: %d\n", tmp.r_or_rr_a);
-		// ft_printf("the best r or rr b: %d\n", tmp.r_or_rr_b);
-		// ft_printf("\n");
-		if (tmp.moves_ab != 0)
-		{
-			if (tmp.moves_ab < src.moves_ab)
-				src = tmp;
-		}
-		else if ((tmp.moves_a + tmp.moves_b) < (src.moves_a + src.moves_b))
+		// ft_printf("tmp :the best number: %d\n", tmp.number);
+		// ft_printf("tmp :the best movesa: %d\n", tmp.moves_a);
+		// ft_printf("tmp :the best movesb: %d\n", tmp.moves_b);
+		// ft_printf("tmp :the best movesab: %d\n", tmp.moves_ab);
+		// ft_printf("tmp :the best r or rr a: %d\n", tmp.r_or_rr_a);
+		// ft_printf("tmp :the best r or rr b: %d\n", tmp.r_or_rr_b);
+	// ft_printf("\n");
+		// if (tmp.moves_ab > 0)
+		// {
+		// 	if(tmp.moves_ab != 0 && tmp.moves_ab < src.moves_ab)
+		// 		src = tmp;
+		// }
+		t = tmp.moves_a + tmp.moves_b - tmp.moves_ab;
+		s = src.moves_a + src.moves_b - src.moves_ab;
+		if (t < s)
 			src = tmp;
 		ptr = ptr->next;
 	}
+	// ft_printf("src :the best number: %d\n", src.number);
+	// ft_printf("src :the best movesa: %d\n", src.moves_a);
+	// ft_printf("src :the best movesb: %d\n", src.moves_b);
+	// ft_printf("src :the best movesab: %d\n", src.moves_ab);
+	// ft_printf("src :the best r or rr a: %d\n", src.r_or_rr_a);
+	// ft_printf("src :the best r or rr b: %d\n", src.r_or_rr_b);
+	// ft_printf("\n");
 	return (src);
 }
 
@@ -198,9 +208,9 @@ void new_go_to(t_list **stack_a, t_list **stack_b, movedata data)
 {
 	while (data.moves_ab > 0)
 	{
-		if (data.r_or_rr_a == 1 && data.r_or_rr_b == 1)
+		if (data.r_or_rr_a == 1)
 			rr(stack_a, stack_b);
-		else if (data.r_or_rr_a == -1 && data.r_or_rr_b == -1)
+		else
 			rrr(stack_a, stack_b);
 		data.moves_ab--;
 		data.moves_a--;
