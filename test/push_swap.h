@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 23:02:55 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 23:50:41 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct number_
 t_list	*c_node(int content);
 int		check_d(t_list *head, int data);
 void	c_stack(int argc, char **argv, t_list **stack_a);
+int		is_empty(const char *str);
 /*-------------------------------------*/
 
 /*---------- new_atoi.c --------------*/

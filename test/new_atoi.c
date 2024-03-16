@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:27:50 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 21:54:08 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 23:50:09 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ number	new_atoi(const char *str)
 	res.error = 0;
 	res.num = 0;
 	sign = 1;
+	if (is_empty(str))
+		res.error = 1;
 	str += whitespace(str);
 	if (*str == '-' && ft_strlen(str) > 1)
 	{

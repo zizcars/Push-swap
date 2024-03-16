@@ -6,16 +6,32 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:26:42 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 23:04:32 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 23:48:51 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/// @brief check if the string is empty
+/// @param string 
+/// @return 1 if it is empty else 0
+int is_empty(char *str)
+{
+	int i;
+
+	i = 0;
+	if (str == NULL || str[i] == '\0')
+		return (1);
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '\0')
+		return (1);
+	return (0);
+}
 /// @brief Create a node with an allocation for its content.
-/// @param content of the new node.
-/// @return the created node.
-t_list	*c_node(int content)
+	/// @param content of the new node.
+	/// @return the created node.
+t_list *c_node(int content)
 {
 	t_list	*node;
 
