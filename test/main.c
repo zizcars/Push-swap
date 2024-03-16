@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:03:24 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 21:50:09 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 21:42:21 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int main(int count, char **numbers)
 		exit(0);
 	c_stack(count, numbers, &stack_a);
 	final_sort(&stack_a, &stack_b);
-	if (is_not_sort(stack_a))
-		ft_printf("not sorted\n");
-	else
-		ft_printf("sorted\n");
+	// if (is_not_sort(stack_a))
+	// 	ft_printf("not sorted\n");
+	// else
+	// 	ft_printf("sorted\n");
 	// ft_lstclear(&stack_a, free);
 	// while (stack_a)
 	// {
