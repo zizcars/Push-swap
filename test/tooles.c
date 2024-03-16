@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:26:42 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 21:20:45 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 23:04:32 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 /// @brief Create a node with an allocation for its content.
 /// @param content of the new node.
 /// @return the created node.
-t_list *c_node(int content)
+t_list	*c_node(int content)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = malloc(sizeof(t_list));
-	node->content = (int *)malloc(sizeof(int));
+	if (node == NULL)
+		return (NULL);
+	node->content = malloc(sizeof(int));
+	if (node->content == NULL)
+		return (NULL);
 	*(int *)node->content = content;
 	node->next = NULL;
 	return (node);
@@ -30,7 +34,7 @@ t_list *c_node(int content)
 /// @param stack The head of stack
 /// @param n The number
 /// @return 1 if dublicated else 0
-int check_d(t_list *stack, int n)
+int	check_d(t_list *stack, int n)
 {
 	while (stack != NULL)
 	{
@@ -71,4 +75,20 @@ void	c_stack(int argc, char **argv, t_list **stack_a)
 		}
 		free(numbers);
 	}
+}
+
+void rr(t_list **stack_a, t_list **stack_b , int per)
+{
+	r_(stack_a, 'a', 0);
+	r_(stack_b, 'b', 0);
+	if (per)
+		ft_printf("%s\n", "rr");
+}
+
+void rrr(t_list **stack_a, t_list **stack_b, int per)
+{
+	rr_(stack_a, 'a', 0);
+	rr_(stack_b, 'b', 0);
+	if (per)
+		ft_printf("%s\n", "rrr");
 }

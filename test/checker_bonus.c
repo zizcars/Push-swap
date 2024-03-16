@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:59:37 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 21:41:48 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 22:29:28 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int main(int count, char **numbers)
 	t_list *stack_a;
 	t_list *stack_b;
 	char *rule_name;
+	rule_name = NULL;
 	// t_list *ptr1;
 	// t_list *ptr2;
 
@@ -112,10 +113,13 @@ int main(int count, char **numbers)
 		exit(0);
 	c_stack(count, numbers, &stack_a);
 	rule_name = get_next_line(0);
+	// int a = 1;
 	while (rule_name)
 	{
 		apply_rule(rule_name, &stack_a, &stack_b);
 		rule_name = get_next_line(0);
+		// a = read(0, rule_name, 1);
+		// ft_printf("|%s|", rule_name);
 	}
 	if (stack_b || is_not_sort(stack_a))
 		ft_printf("KO\n");

@@ -5,14 +5,14 @@ CFILES= main.c \
 		new_atoi.c \
 		tooles.c \
 		rules.c \
-		sorting.c \
+		assistant.c \
 		sort_tooles.c \
 		sort.c
 BCFILES=checker_bonus.c \
 		new_atoi.c \
 		tooles.c \
 		rules.c \
-		sorting.c \
+		assistant.c \
 		sort_tooles.c \
 		sort.c\
 		get_next_line.c \
@@ -20,7 +20,7 @@ BCFILES=checker_bonus.c \
 
 BOFILES=$(BCFILES:.c=.o) 
 OFILES=$(CFILES:.c=.o)
-NAME=push_swap #CHENGE IT 
+NAME=push_swap 
 BNAME=checker
 LIBNAME=libft/libft.a ft_printf/libftprintf.a
 
@@ -36,7 +36,7 @@ libs:
 	cd libft && make && make bonus
 	cd ft_printf && make
 
-bonus: $(BOFILES) all  #how about use just the checker without mandantory
+bonus: $(BOFILES) libs #how about use just the checker without mandantory
 	$(CC) $(CFLAGS) $(BOFILES) $(LIBNAME) -o $(BNAME)
 
 

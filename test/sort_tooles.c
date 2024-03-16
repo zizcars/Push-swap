@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:15:54 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 20:57:25 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 23:04:07 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /// @param stack of numbers
 /// @param medium the number
 /// @return a struct has who many numbers bigger and smaller
-min_big cal_min_big(t_list *stack, int medium)
+min_big	cal_min_big(t_list *stack, int medium)
 {
 	min_big n;
 
@@ -36,7 +36,7 @@ min_big cal_min_big(t_list *stack, int medium)
 /// @brief find the medium number in a stack
 /// @param stack of numbers
 /// @return the medium number
-int find_medium(t_list *stack)
+int	find_medium(t_list *stack)
 {
 	int medium;
 	min_big n;
@@ -62,7 +62,7 @@ int find_medium(t_list *stack)
 /// @param head
 /// @param pivot
 /// @return The first small number than pivot.if there is no number return pivot.
-int find_smaller(t_list *head, int pivot)
+int	find_smaller(t_list *head, int pivot)
 {
 	int tmp;
 
@@ -79,7 +79,7 @@ int find_smaller(t_list *head, int pivot)
 /// @brief Find the smallest number in the linked list.
 /// @param head of linked list
 /// @return the smallest number
-int find_min(t_list *head)
+int	find_min(t_list *head)
 {
 	int min;
 	int tmp;
@@ -94,7 +94,7 @@ int find_min(t_list *head)
 	return (min);
 }
 
-int find_max(t_list *head)
+int	find_max(t_list *head)
 {
 	int max;
 	int tmp;

@@ -6,11 +6,16 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:03:24 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 21:42:21 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 23:03:39 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int top(t_list *stack)
+{
+	return (*(int *)stack->content);
+}
 
 int main(int count, char **numbers)
 {
@@ -22,11 +27,11 @@ int main(int count, char **numbers)
 	if (count == 1)
 		exit(0);
 	c_stack(count, numbers, &stack_a);
-	final_sort(&stack_a, &stack_b);
-	// if (is_not_sort(stack_a))
-	// 	ft_printf("not sorted\n");
-	// else
-	// 	ft_printf("sorted\n");
+	sort_stack(&stack_a, &stack_b);
+	if (is_not_sort(stack_a))
+		ft_printf("not sorted\n");
+	else
+		ft_printf("sorted\n");
 	// ft_lstclear(&stack_a, free);
 	// while (stack_a)
 	// {

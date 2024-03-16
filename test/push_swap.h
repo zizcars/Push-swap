@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 22:56:58 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 23:02:55 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,9 @@ int		top(t_list *stack);
 /*----------------- sorting.c ----------------*/
 // void	selection_sort(t_list **stack_a);
 int		is_not_sort(t_list *head);
-void	sort2_3(t_list **stack, int size);
-void	push_sort_a(t_list **stack_a, t_list **stack_b);
+void	sort_three(t_list **stack);
 int		place_of_n(t_list *head, int n);
 int		find_closest(t_list *head, int pivot);
-void	sort_stack(t_list **stack_a, t_list **stack_b);
 void	go_to(t_list **stack, int number);
 /*------------------------------------------*/
 
@@ -76,14 +74,14 @@ typedef struct movedata_
 	int moves_a;
 	int moves_b;
 	int moves_ab;
-	int r_or_rr_a; // 1 for r_ or -1 for rr_
+	int r_or_rr_a;
 	int r_or_rr_b;
 } movedata;
 
-void	push_to_b(t_list **stack_a, t_list **stack_b);
-void final_sort(t_list **stack_a, t_list **stack_b);
-movedata cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b);
-movedata take_smale_moves(t_list *stack_a, t_list *stack_b);
-void new_go_to(t_list **stack_a, t_list **stack_b, movedata data);
+void		push_to_b(t_list **stack_a, t_list **stack_b);
+movedata	cal_moves(t_list *stack_a, t_list *stack_b, int number_in_b);
+movedata	take_smale_moves(t_list *stack_a, t_list *stack_b);
+void		apply_moves(t_list **stack_a, t_list **stack_b, movedata data);
+void		sort_stack(t_list **stack_a, t_list **stack_b);
 /*-----------------------------------------------*/
 #endif

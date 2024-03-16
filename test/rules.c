@@ -6,14 +6,11 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:39:39 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 22:58:55 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 23:03:58 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// You can add char c to argumant and add an if condition to check if 
-// if it is 'a' print like pa or pb ...
 
 void s_(t_list **stack, char c, int per)
 {
@@ -85,25 +82,4 @@ void ss(t_list **stack_a, t_list **stack_b, int per)
 	s_(stack_b, 'b', 0);
 	if (per)
 		ft_printf("%s\n", "ss");
-}
-
-void rr(t_list **stack_a, t_list **stack_b , int per)
-{
-	r_(stack_a, 'a', 0);
-	r_(stack_b, 'b', 0);
-	if (per)
-		ft_printf("%s\n", "rr");
-}
-
-void rrr(t_list **stack_a, t_list **stack_b, int per)
-{
-	rr_(stack_a, 'a', 0);
-	rr_(stack_b, 'b', 0);
-	if (per)
-		ft_printf("%s\n", "rrr");
-}
-
-int top(t_list *stack)
-{
-	return (*(int *)stack->content);
 }
