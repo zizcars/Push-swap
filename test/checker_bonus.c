@@ -6,40 +6,54 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:59:37 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 17:45:46 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 21:02:52 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
+
+int rule_cmp(char *rule, char **rules)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (rules[i])
+	{
+		j = 0;
+		while (rule[j] && rules[i][j] && rule[j] == rules[i][j])
+			j++;
+		if (rule[j] == '\0' && rules[i][j] == '\0')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 /// @brief it check rule name is it correct or not
 /// @param r_name the rule name
 void check_rule_name(char *r_name)
 {
 	char *rules_name[12];
-	int ri;
 
-	rules_name[0] = "sa";
-	rules_name[1] = "sb";
-	rules_name[2] = "ss";
-	rules_name[3] = "ra";
-	rules_name[4] = "rb";
-	rules_name[5] = "rr";
-	rules_name[6] = "rra";
-	rules_name[7] = "rrb";
-	rules_name[8] = "rrr";
-	rules_name[9] = "pa";
-	rules_name[10] = "pb";
+	rules_name[0] = "sa\n";
+	rules_name[1] = "sb\n";
+	rules_name[2] = "ss\n";
+	rules_name[3] = "ra\n";
+	rules_name[4] = "rb\n";
+	rules_name[5] = "rr\n";
+	rules_name[6] = "rra\n";
+	rules_name[7] = "rrb\n";
+	rules_name[8] = "rrr\n";
+	rules_name[9] = "pa\n";
+	rules_name[10] = "pb\n";
 	rules_name[11] = NULL;
-	ri = 0;
-	while (rules_name[ri])
+	int a = rule_cmp(r_name, rules_name);
+	if (a)
 	{
-		if (ft_strncmp(r_name, rules_name[ri], ft_strlen(rules_name[ri])) == 0)
-			return;
-		ri++;
+		write(STDERR, "Error\n", 6);
+		exit(1);
 	}
-	write(2, "Error\n", 6);
-	exit(1);
 }
 
 /// @brief apply the rules
@@ -52,33 +66,35 @@ void apply_rule(char *r_name, t_list **stack_a, t_list **stack_b)
 	if (r_name[0] == 's')
 	{
 		if (r_name[1] == 'a')
-			s_(stack_a, 'a', 0);
+			s_(stack_a, 'a', 1);
 		else if (r_name[1] == 'b')
-			s_(stack_b, 'b', 0);
+			s_(stack_b, 'b', 1);
 		else
-			ss(stack_a, stack_b, 0);
+			ss(stack_a, stack_b, 1);
 	}
 	else if (r_name[0] == 'p')
 	{
 		if (r_name[1] == 'a')
-			p_(stack_b, stack_a, 'a', 0);
+			p_(stack_b, stack_a, 'a', 1);
 		else if (r_name[1] == 'b')
-			p_(stack_a, stack_b, 'b', 0);
+			p_(stack_a, stack_b, 'b', 1);
 	}
 	else if (r_name[0] == 'r')
 	{
 		if (r_name[1] == 'a')
-			r_(stack_a, 'a', 0);
+			r_(stack_a, 'a', 1);
 		else if (r_name[1] == 'b')
-			r_(stack_b, 'b', 0);
+			r_(stack_b, 'b', 1);
 		else
 		{
-			if (r_name[2] == '\0')
-				rr(stack_a, stack_b, 0);
+			if (r_name[2] == 'r')
+				rrr(stack_a, stack_b, 1);
 			else if (r_name[2] == 'a')
-				rr_(stack_a, 'a', 0);
-			else if (r_name[2 == 'b'])
-				rr_(stack_b, 'b', 0);
+				rr_(stack_a, 'a', 1);
+			else if (r_name[2] == 'b')
+				rr_(stack_b, 'b', 1);
+			else
+				rr(stack_a, stack_b, 1);
 		}
 	}
 }
@@ -88,27 +104,33 @@ int main(int count, char **numbers)
 	t_list *stack_a;
 	t_list *stack_b;
 	char *rule_name;
+	t_list *ptr1;
+	t_list *ptr2;
 
 	stack_b = NULL;
 	stack_a = NULL;
 	if (count == 1)
 		exit(0);
 	c_stack(count, numbers, &stack_a);
-	while (1)
+	rule_name = get_next_line(0);
+	while (rule_name)
 	{
-		rule_name = get_next_line(0);
 		apply_rule(rule_name, &stack_a, &stack_b);
-		ft_printf("A:");
-		while (stack_a)
-		{
-			ft_printf("%d ", *(int *)stack_a->content);
-			stack_a = stack_a->next;
-		}
-		ft_printf("B:");
-		while (stack_b)
-		{
-			ft_printf("%d ", *(int *)stack_b->content);
-			stack_b = stack_b->next;
-		}
+		rule_name = get_next_line(0);
 	}
+	ptr1 = stack_a;
+	ptr2 = stack_b;
+	ft_printf("A:");
+	while (ptr1)
+	{
+		ft_printf("%d ", *(int *)ptr1->content);
+		ptr1 = ptr1->next;
+	}
+	ft_printf("\nB:");
+	while (ptr2)
+	{
+		ft_printf("%d ", *(int *)ptr2->content);
+		ptr2 = ptr2->next;
+	}
+	ft_printf("\n");
 }

@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 22:58:08 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/16 19:41:52 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void new_go_to(t_list **stack_a, t_list **stack_b, movedata data)
 }
 
 // there is a problem in find_closest you have to solve it
+
 void final_sort(t_list **stack_a, t_list **stack_b)
 {
 	int size;
