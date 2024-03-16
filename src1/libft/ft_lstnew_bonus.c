@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_bonus.h                                    :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 20:59:53 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 17:26:34 by Achakkaf         ###   ########.fr       */
+/*   Created: 2023/12/13 10:44:09 by Achakkaf          #+#    #+#             */
+/*   Updated: 2024/02/27 12:19:25 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_BONUS_H
-# define CHECKER_BONUS_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
-#include "push_swap.h"
-#include "get_next_line.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*node;
 
-
-#endif
+	node = malloc(sizeof(t_list));
+	if (!node)
+		return (NULL);
+	node->content = content;
+	node->next = NULL;
+	return (node);
+}

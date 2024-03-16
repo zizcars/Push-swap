@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 22:58:08 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:48:21 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ void new_go_to(t_list **stack_a, t_list **stack_b, movedata data)
 	while (data.moves_ab > 0)
 	{
 		if (data.r_or_rr_a == 1)
-			rr(stack_a, stack_b, 1);
+			rr(stack_a, stack_b);
 		else
-			rrr(stack_a, stack_b, 1);
+			rrr(stack_a, stack_b);
 		data.moves_ab--;
 		data.moves_a--;
 		data.moves_b--;

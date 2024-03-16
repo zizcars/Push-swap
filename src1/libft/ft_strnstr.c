@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_bonus.h                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 20:59:53 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 17:26:34 by Achakkaf         ###   ########.fr       */
+/*   Created: 2023/12/07 17:35:20 by Achakkaf          #+#    #+#             */
+/*   Updated: 2023/12/23 09:40:56 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_BONUS_H
-# define CHECKER_BONUS_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
-#include "push_swap.h"
-#include "get_next_line.h"
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	size_t	j;
 
-
-#endif
+	i = 0;
+	if (!*needle)
+		return ((char *)haystack);
+	while (i < len && haystack[i])
+	{
+		j = 0;
+		while ((haystack[i + j] == needle[j]) && (i + j < len) && \
+		(haystack[i + j] && needle[j]))
+			j++;
+		if (needle[j] == '\0')
+			return ((char *)haystack + i);
+		i++;
+	}
+	return (NULL);
+}

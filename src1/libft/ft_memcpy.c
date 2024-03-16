@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_bonus.h                                    :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 20:59:53 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 17:26:34 by Achakkaf         ###   ########.fr       */
+/*   Created: 2023/12/06 16:51:43 by Achakkaf          #+#    #+#             */
+/*   Updated: 2023/12/23 09:39:06 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_BONUS_H
-# define CHECKER_BONUS_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
-#include "push_swap.h"
-#include "get_next_line.h"
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t	i;
 
-
-#endif
+	if (!dst && !src)
+		return (NULL);
+	i = 0;
+	if (dst == src)
+		return (dst);
+	while (i < n)
+	{
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
+		i++;
+	}
+	return (dst);
+}

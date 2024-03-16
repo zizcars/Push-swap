@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_bonus.h                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 20:59:53 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 17:26:34 by Achakkaf         ###   ########.fr       */
+/*   Created: 2023/12/12 13:57:09 by Achakkaf          #+#    #+#             */
+/*   Updated: 2023/12/23 09:40:37 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_BONUS_H
-# define CHECKER_BONUS_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
-#include "push_swap.h"
-#include "get_next_line.h"
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	unsigned int	i;
+	char			*str;
 
-
-#endif
+	if (!s || !f)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (s[i])
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

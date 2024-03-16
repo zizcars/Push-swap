@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_bonus.h                                    :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 20:59:53 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/16 17:26:34 by Achakkaf         ###   ########.fr       */
+/*   Created: 2023/12/04 14:41:05 by Achakkaf          #+#    #+#             */
+/*   Updated: 2023/12/19 15:23:12 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECKER_BONUS_H
-# define CHECKER_BONUS_H
+#include "libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
-#include "libft/libft.h"
-#include "ft_printf/ft_printf.h"
-#include "push_swap.h"
-#include "get_next_line.h"
-
-
-#endif
+int	ft_isalpha(int c)
+{
+	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}

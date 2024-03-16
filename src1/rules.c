@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:39:39 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 22:58:55 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/14 23:05:37 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,28 +79,25 @@ void r_(t_list **stack, char c, int per)
 		ft_printf("r%c\n", c);
 }
 
-void ss(t_list **stack_a, t_list **stack_b, int per)
+void ss(t_list **stack_a, t_list **stack_b)
 {
 	s_(stack_a, 'a', 0);
 	s_(stack_b, 'b', 0);
-	if (per)
-		ft_printf("%s\n", "ss");
+	ft_printf("%s\n", "ss");
 }
 
-void rr(t_list **stack_a, t_list **stack_b , int per)
+void rr(t_list **stack_a, t_list **stack_b)
 {
 	r_(stack_a, 'a', 0);
 	r_(stack_b, 'b', 0);
-	if (per)
-		ft_printf("%s\n", "rr");
+	ft_printf("%s\n", "rr");
 }
 
-void rrr(t_list **stack_a, t_list **stack_b, int per)
+void rrr(t_list **stack_a, t_list **stack_b)
 {
 	rr_(stack_a, 'a', 0);
 	rr_(stack_b, 'b', 0);
-	if (per)
-		ft_printf("%s\n", "rrr");
+	ft_printf("%s\n", "rrr");
 }
 
 int top(t_list *stack)

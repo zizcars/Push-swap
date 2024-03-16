@@ -6,7 +6,7 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 12:58:08 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 22:56:58 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:49:17 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	s_(t_list **stack, char c, int per);
 void	p_(t_list **s_src, t_list **s_dst, char c, int per);
 void	r_(t_list **stack, char c, int per);
 void	rr_(t_list **stack, char c, int per);
-void	ss(t_list **stack_a, t_list **stack_b, int per);
-void	rr(t_list **stack_a, t_list **stack_b, int per);
-void	rrr(t_list **stack_a, t_list **stack_b, int per);
+void	ss(t_list **stack_a, t_list **stack_b);
+void	rr(t_list **stack_a, t_list **stack_b);
+void	rrr(t_list **stack_a, t_list **stack_b);
 int		top(t_list *stack);
 /*----------------------------------------------------------*/
 
@@ -49,25 +49,18 @@ int		top(t_list *stack);
 // void	selection_sort(t_list **stack_a);
 int		is_not_sort(t_list *head);
 void	sort2_3(t_list **stack, int size);
+int		find_min(t_list *stack);
 void	push_sort_a(t_list **stack_a, t_list **stack_b);
 int		place_of_n(t_list *head, int n);
 int		find_closest(t_list *head, int pivot);
 void	sort_stack(t_list **stack_a, t_list **stack_b);
+int		find_max(t_list *head);
 void	go_to(t_list **stack, int number);
 /*------------------------------------------*/
 
 /*------------------ sort_tooles.c -----------------------*/
-typedef struct min_big_
-{
-	int min;
-	int big;
-} min_big;
-
-min_big cal_min_big(t_list *stack, int medium);
 int		find_medium(t_list *stack);
 int		find_smaller(t_list *head, int pivot);
-int		find_min(t_list *stack);
-int		find_max(t_list *head);
 /*-----------------------------------------------*/
 /*------------------ sort.c -----------------------*/
 typedef struct movedata_
