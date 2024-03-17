@@ -6,7 +6,19 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:59:37 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/17 20:24:55 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/17 21:55:10 by Achakkaf         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/15 20:59:37 by Achakkaf          #+#    #+#             */
+/*   Updated: 2024/03/17 21:49:11 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +67,25 @@ void check_rule_name(char *r_name)
 	}
 }
 
+void apply_r(char *r_name, t_list **stack_a, t_list **stack_b)
+{
+	if (r_name[1] == 'a')
+		r_(stack_a, 'a', 0);
+	else if (r_name[1] == 'b')
+		r_(stack_b, 'b', 0);
+	else
+	{
+		if (r_name[2] == 'r')
+			rrr(stack_a, stack_b, 0);
+		else if (r_name[2] == 'a')
+			rr_(stack_a, 'a', 0);
+		else if (r_name[2] == 'b')
+			rr_(stack_b, 'b', 0);
+		else
+			rr(stack_a, stack_b, 0);
+	}
+}
+
 /// @brief apply the rules
 /// @param r_name the rule name
 void apply_rule(char *r_name, t_list **stack_a, t_list **stack_b)
@@ -79,23 +110,7 @@ void apply_rule(char *r_name, t_list **stack_a, t_list **stack_b)
 			p_(stack_a, stack_b, 'b', 0);
 	}
 	else if (r_name[0] == 'r')
-	{
-		if (r_name[1] == 'a')
-			r_(stack_a, 'a', 0);
-		else if (r_name[1] == 'b')
-			r_(stack_b, 'b', 0);
-		else
-		{
-			if (r_name[2] == 'r')
-				rrr(stack_a, stack_b, 0);
-			else if (r_name[2] == 'a')
-				rr_(stack_a, 'a', 0);
-			else if (r_name[2] == 'b')
-				rr_(stack_b, 'b', 0);
-			else
-				rr(stack_a, stack_b, 0);
-		}
-	}
+		apply_r(r_name, stack_a, stack_b);
 }
 
 int main(int count, char **numbers)
@@ -118,6 +133,7 @@ int main(int count, char **numbers)
 	}
 	if (stack_b || is_not_sort(stack_a))
 		ft_printf("KO\n");
-	else 
+	else
 		ft_printf("OK\n");
 }
+
