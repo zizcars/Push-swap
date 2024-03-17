@@ -6,14 +6,11 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 11:39:39 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/06 17:04:25 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/17 19:49:57 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// You can add char c to argumant and add an if condition to check if 
-// if it is 'a' print like pa or pb ...
 
 void s_(t_list **stack, char c, int per)
 {
@@ -79,27 +76,9 @@ void r_(t_list **stack, char c, int per)
 		ft_printf("r%c\n", c);
 }
 
-void ss(t_list **stack_a, t_list **stack_b)
-{
-	s_(stack_a, 'a', 0);
-	s_(stack_b, 'b', 0);
-	ft_printf("%s\n", "ss");
-}
-
-void rr(t_list **stack_a, t_list **stack_b)
-{
-	r_(stack_a, 'a', 0);
-	r_(stack_b, 'b', 0);
-	ft_printf("%s\n", "rr");
-}
-
-void rrr(t_list **stack_a, t_list **stack_b)
-{
-	rr_(stack_a, 'a', 0);
-	rr_(stack_b, 'b', 0);
-	ft_printf("%s\n", "rrr");
-}
-
+/// @brief take top content is a stack
+/// @param stack 
+/// @return the top content
 int top(t_list *stack)
 {
 	return (*(int *)stack->content);

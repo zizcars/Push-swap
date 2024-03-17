@@ -6,15 +6,15 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:27:50 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/06 13:27:09 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/17 17:40:53 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	whitespace(const char *str)
+static int whitespace(const char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
@@ -22,9 +22,9 @@ static int	whitespace(const char *str)
 	return (i);
 }
 
-static number	nmber(const char *str, number res, int sign)
+static number nmber(const char *str, number res, int sign)
 {
-	long	tmp;
+	long tmp;
 
 	tmp = 0;
 	while (*str)
@@ -50,10 +50,10 @@ static number	nmber(const char *str, number res, int sign)
 	return (res);
 }
 
-number	new_atoi(const char *str)
+number new_atoi(const char *str)
 {
-	int		sign;
-	number	res;
+	int sign;
+	number res;
 
 	res.error = 0;
 	res.num = 0;

@@ -6,7 +6,7 @@
 #    By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/10 17:20:23 by Achakkaf          #+#    #+#              #
-#    Updated: 2024/02/28 12:46:06 by Achakkaf         ###   ########.fr        #
+#    Updated: 2024/03/17 19:34:36 by Achakkaf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,19 +66,19 @@ OBFILES = $(BFILES:.c=.o)
 all : $(NAME)
 
 $(NAME): $(OFILES)
-	ar rc $(NAME) $(OFILES)
+	@ar rc $(NAME) $(OFILES)
 
 %.o:%.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 bonus : $(OBFILES)
-	ar rc $(NAME) $(OBFILES)
+	@ar rc $(NAME) $(OBFILES)
 
 clean : 
-	rm -f $(OFILES) $(OBFILES)
+	@rm -f $(OFILES) $(OBFILES)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
 

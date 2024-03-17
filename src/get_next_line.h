@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/30 11:23:09 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/15 22:03:07 by Achakkaf         ###   ########.fr       */
+/*   Created: 2024/01/04 13:22:05 by Achakkaf          #+#    #+#             */
+/*   Updated: 2024/03/15 22:04:23 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <stdarg.h>
 # include <unistd.h>
+# include <stdlib.h>
 
-# define STDOUT 1
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-int		ft_printf(const char *format, ...);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
 size_t	ft_strlen(const char *s);
-int		ft_putnbr(int n);
-int		ft_uputnbr(unsigned int u);
-int		ft_puthex(unsigned int n, char x);
-char	*ft_strchr(const char *s, int c);
-int		ft_putaddress(void *address);
+char	*get_next_line(int fd);
+char	*ft_strdup(const char *s);
+char	*get_one_line(char *s);
+char	*rm_line(char *s);
+int		find_nl(char *s);
 
 #endif

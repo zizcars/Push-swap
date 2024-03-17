@@ -17,16 +17,16 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):$(OBJ)
-	ar rc $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 	
 %.o:%.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
 
