@@ -6,20 +6,15 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 23:27:32 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/17 19:48:37 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/17 22:52:06 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/// @brief it set a movedata variable to it default value.
-/// @param stack_a 
-/// @param stack_b 
-/// @param number 
-/// @return movedata variable
-movedata default_values(t_list *stack_a, t_list *stack_b, int number)
+t_movedata	default_values(t_list *stack_a, t_list *stack_b, int number)
 {
-	movedata data;
+	t_movedata	data;
 
 	data.number = number;
 	data.moves_b = place_of_n(stack_b, number);
@@ -30,16 +25,11 @@ movedata default_values(t_list *stack_a, t_list *stack_b, int number)
 	return (data);
 }
 
-/// @brief this function fill the data about how many moves and the best ones for a number.
-/// @param stack_a
-/// @param stack_b
-/// @param number_in_b the number in b to search for its right position in stack_a
-/// @return all the data that has add to bestmove data structer
-movedata	cal_moves(t_list *stack_a, t_list *stack_b, int number)
+t_movedata	cal_moves(t_list *stack_a, t_list *stack_b, int number)
 {
-	movedata data;
-	int sizea;
-	int sizeb;
+	t_movedata	data;
+	int			sizea;
+	int			sizeb;
 
 	sizea = ft_lstsize(stack_a);
 	sizeb = ft_lstsize(stack_b);
@@ -54,7 +44,7 @@ movedata	cal_moves(t_list *stack_a, t_list *stack_b, int number)
 		data.moves_b = sizeb - data.moves_b;
 		data.r_or_rr_b = -1;
 	}
-	if (data.r_or_rr_a == data.r_or_rr_b && data.moves_a > 0 && data.moves_b > 0)
+	if (data.r_or_rr_a == data.r_or_rr_b && data.moves_a && data.moves_b)
 	{
 		if (data.moves_a > data.moves_b)
 			data.moves_ab = data.moves_b;
@@ -64,17 +54,13 @@ movedata	cal_moves(t_list *stack_a, t_list *stack_b, int number)
 	return (data);
 }
 
-/// @brief compare all the data that are comes form cal_moves and take the small one
-/// @param stack_a
-/// @param stack_b
-/// @return the small data that is found about a number
-movedata	take_smale_moves(t_list *stack_a, t_list *stack_b)
+t_movedata	take_smale_moves(t_list *stack_a, t_list *stack_b)
 {
-	movedata src;
-	movedata tmp;
-	t_list *ptr;
-	int t;
-	int s;
+	t_movedata	src;
+	t_movedata	tmp;
+	t_list		*ptr;
+	int			tmp_total;
+	int			src_total;
 
 	ptr = stack_b;
 	src = cal_moves(stack_a, stack_b, top(stack_b));
@@ -83,21 +69,16 @@ movedata	take_smale_moves(t_list *stack_a, t_list *stack_b)
 	while (ptr)
 	{
 		tmp = cal_moves(stack_a, stack_b, top(ptr));
-		t = tmp.moves_a + tmp.moves_b - tmp.moves_ab;
-		s = src.moves_a + src.moves_b - src.moves_ab;
-		if (t < s)
+		tmp_total = tmp.moves_a + tmp.moves_b - tmp.moves_ab;
+		src_total = src.moves_a + src.moves_b - src.moves_ab;
+		if (tmp_total < src_total)
 			src = tmp;
 		ptr = ptr->next;
 	}
 	return (src);
 }
 
-/// @brief apply moves for just moving stack A and stack B
-/// @param stack_a
-/// @param stack_b
-/// @param data
-/// @return new move data
-movedata apply_move_ab(t_list **stack_a, t_list **stack_b, movedata data)
+t_movedata	apply_move_ab(t_list **stack_a, t_list **stack_b, t_movedata data)
 {
 	while (data.moves_ab > 0)
 	{
@@ -112,11 +93,7 @@ movedata apply_move_ab(t_list **stack_a, t_list **stack_b, movedata data)
 	return (data);
 }
 
-/// @brief it rule is to applice the information in movedata variable.
-/// @param stack_a
-/// @param stack_b
-/// @param data the movedata
-void	apply_moves(t_list **stack_a, t_list **stack_b, movedata data)
+void	apply_moves(t_list **stack_a, t_list **stack_b, t_movedata data)
 {
 	data = apply_move_ab(stack_a, stack_b, data);
 	while (data.moves_a > 0)

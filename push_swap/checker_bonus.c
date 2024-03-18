@@ -6,28 +6,16 @@
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 20:59:37 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/17 21:55:10 by Achakkaf         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   checker_bonus.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 20:59:37 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/17 21:49:11 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/18 21:24:50 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-int rule_cmp(char *rule, char **rules)
+int	rule_cmp(char *rule, char **rules)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (rules[i])
@@ -42,11 +30,9 @@ int rule_cmp(char *rule, char **rules)
 	return (1);
 }
 
-/// @brief it check rule name is it correct or not
-/// @param r_name the rule name
-void check_rule_name(char *r_name)
+void	check_rule_name(char *r_name)
 {
-	char *rules_name[12];
+	char	*rules_name[12];
 
 	rules_name[0] = "sa\n";
 	rules_name[1] = "sb\n";
@@ -67,7 +53,7 @@ void check_rule_name(char *r_name)
 	}
 }
 
-void apply_r(char *r_name, t_list **stack_a, t_list **stack_b)
+void	apply_r(char *r_name, t_list **stack_a, t_list **stack_b)
 {
 	if (r_name[1] == 'a')
 		r_(stack_a, 'a', 0);
@@ -86,12 +72,10 @@ void apply_r(char *r_name, t_list **stack_a, t_list **stack_b)
 	}
 }
 
-/// @brief apply the rules
-/// @param r_name the rule name
-void apply_rule(char *r_name, t_list **stack_a, t_list **stack_b)
+void	apply_rule(char *r_name, t_list **stack_a, t_list **stack_b)
 {
 	if (r_name == NULL)
-		return;
+		return ;
 	check_rule_name(r_name);
 	if (r_name[0] == 's')
 	{
@@ -113,11 +97,11 @@ void apply_rule(char *r_name, t_list **stack_a, t_list **stack_b)
 		apply_r(r_name, stack_a, stack_b);
 }
 
-int main(int count, char **numbers)
+int	main(int count, char **numbers)
 {
-	t_list *stack_a;
-	t_list *stack_b;
-	char *rule_name;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	char	*rule_name;
 
 	rule_name = NULL;
 	stack_b = NULL;
@@ -135,5 +119,5 @@ int main(int count, char **numbers)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");
+	return (0);
 }
-

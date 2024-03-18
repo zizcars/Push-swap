@@ -5,49 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/17 19:48:27 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/17 19:52:27 by Achakkaf         ###   ########.fr       */
+/*   Created: 2024/03/04 14:55:17 by Achakkaf          #+#    #+#             */
+/*   Updated: 2024/03/18 23:10:26 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ss(t_list **stack_a, t_list **stack_b, int per)
-{
-	s_(stack_a, 'a', 0);
-	s_(stack_b, 'b', 0);
-	if (per)
-		ft_printf("%s\n", "ss");
-}
-
-void rr(t_list **stack_a, t_list **stack_b, int per)
-{
-	r_(stack_a, 'a', 0);
-	r_(stack_b, 'b', 0);
-	if (per)
-		ft_printf("%s\n", "rr");
-}
-
-void rrr(t_list **stack_a, t_list **stack_b, int per)
-{
-	rr_(stack_a, 'a', 0);
-	rr_(stack_b, 'b', 0);
-	if (per)
-		ft_printf("%s\n", "rrr");
-}
-
-/// @brief Push the element from stack A to stack B starting from less first
-/// @param stack_a
-/// @param stack_b
 void	push_to_b(t_list **stack_a, t_list **stack_b)
 {
-	int medium;
-	t_list *ptr;
-	int smaller;
-	int size;
+	int		medium;
+	t_list	*ptr;
+	int		smaller;
+	int		size;
 
 	size = ft_lstsize(*stack_a);
-	medium = find_medium(*stack_a);
+	medium = average(*stack_a);
 	ptr = *stack_a;
 	smaller = medium + 1;
 	while (ptr && smaller != medium && size > 3)
@@ -68,23 +41,81 @@ void	push_to_b(t_list **stack_a, t_list **stack_b)
 		sort_three(stack_a);
 }
 
-/// @brief sort a stack in less moves.
-/// @param stack_a 
-/// @param stack_b 
+int		is_not_sort(t_list *head)
+{
+	t_list	*tmp;
+	int		tmp_a;
+	int		first;
+
+	if (head == NULL || head->next == NULL)
+		return (0);
+	while (head)
+	{
+		tmp = head;
+		first = *(int *)tmp->content;
+		while (tmp)
+		{
+			tmp_a = *(int *)tmp->content;
+			if (first > tmp_a)
+				return (1);
+			tmp = tmp->next;
+		}
+		head = head->next;
+	}
+	return (0);
+}
+
+void	sort_three(t_list **stack)
+{
+	int	max;
+
+	if (is_not_sort(*stack))
+	{
+		max = find_max(*stack);
+		if (max == *(int *)(*stack)->content)
+			r_(stack, 'a', 1);
+		else if (max == *(int *)(*stack)->next->content)
+			rr_(stack, 'a', 1);
+		if (*(int *)(*stack)->content > *(int *)(*stack)->next->content)
+			s_(stack, 'a', 1);
+	}
+}
+
+void	go_to(t_list **stack, int number)
+{
+	int	size;
+	int	n_top;
+	int	moves;
+
+	moves = place_of_n(*stack, number);
+	if (moves == -1)
+		return ;
+	n_top = top(*stack);
+	size = ft_lstsize(*stack);
+	while (number != n_top)
+	{
+		if (moves <= size / 2)
+			r_(stack, 'a', 1);
+		else if (moves > size / 2)
+			rr_(stack, 'a', 1);
+		n_top = top(*stack);
+	}
+}
+
 void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
-	int size;
-	movedata data;
+	int			size;
+	t_movedata	data;
 
 	if (is_not_sort(*stack_a) == 0)
-		return;
+		return ;
 	size = ft_lstsize(*stack_a);
 	if (size == 1)
-		return;
+		return ;
 	else if (size <= 3)
 	{
 		sort_three(stack_a);
-		return;
+		return ;
 	}
 	push_to_b(stack_a, stack_b);
 	while (*stack_b)

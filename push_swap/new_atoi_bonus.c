@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_atoi.c                                         :+:      :+:    :+:   */
+/*   new_atoi_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Achakkaf <zizcarschak1@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:27:50 by Achakkaf          #+#    #+#             */
-/*   Updated: 2024/03/17 22:52:29 by Achakkaf         ###   ########.fr       */
+/*   Updated: 2024/03/18 21:32:35 by Achakkaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
 static int	whitespace(const char *str)
 {

@@ -3,23 +3,20 @@ CC = cc
 CFLAGS= -Wall -Wextra -Werror
 CFILES= main.c \
 		new_atoi.c \
-		tooles.c \
+		finding.c \
 		rules.c \
-		assistant.c \
-		sort_tooles.c \
-		more_tooles.c \
+		rules_two.c \
+		move.c \
+		tooles.c \
 		sort.c
 
 BCFILES=checker_bonus.c \
-		get_next_line.c \
-		get_next_line_utils.c \
-		new_atoi.c \
-		tooles.c \
-		rules.c \
-		assistant.c \
-		sort_tooles.c \
-		more_tooles.c \
-		sort.c
+		get_next_line_bonus.c \
+		get_next_line_utils_bonus.c \
+		new_atoi_bonus.c \
+		rules_bonus.c \
+		rules_two_bonus.c \
+		create_s_bonus.c \
 
 BOFILES=$(BCFILES:.c=.o) 
 OFILES=$(CFILES:.c=.o)
@@ -33,13 +30,13 @@ $(NAME): $(OFILES) libs
 	@$(CC) $(CFLAGS) $(OFILES) $(LIBNAME) -o $(NAME)
 
 %.o:%.c push_swap.h checker_bonus.h
-	$(CC) $(CFLAGS) -c $< 
+	$(CC) $(CFLAGS) -c $<
 
 libs:
 	@cd libft && make && make bonus
 	@cd ft_printf && make
 
-bonus: $(BOFILES) libs #how about use just the checker without mandantory
+bonus: $(BOFILES) libs
 	@$(CC) $(CFLAGS) $(BOFILES) $(LIBNAME) -o $(BNAME)
 
 
@@ -54,3 +51,5 @@ fclean: clean
 	@cd ft_printf && make fclean 
 
 re: fclean all
+
+.PHONY: clean libs
