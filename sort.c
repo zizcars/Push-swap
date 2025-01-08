@@ -15,15 +15,16 @@
 void	push_to_b(t_list **stack_a, t_list **stack_b)
 {
 	int		medium;
-	t_list	*ptr;
 	int		smaller;
+	t_list	*ptr;
 	int		size;
 
 	size = ft_lstsize(*stack_a);
 	medium = average(*stack_a);
 	ptr = *stack_a;
-	smaller = medium + 1;
-	while (ptr && smaller != medium && size > 3)
+	// smaller = medium + 1;
+	smaller = find_smaller(*stack_a, medium);
+	while (ptr && smaller < medium && size > 3)
 	{
 		smaller = find_smaller(*stack_a, medium);
 		go_to(stack_a, smaller);
