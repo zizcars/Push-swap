@@ -1,22 +1,9 @@
 
 CC = cc 
 CFLAGS= -Wall -Wextra -Werror
-CFILES= main.c \
-		new_atoi.c \
-		finding.c \
-		rules.c \
-		rules_two.c \
-		move.c \
-		tooles.c \
-		sort.c
+CFILES = $(wildcard src/*.c)
 
-BCFILES=checker_bonus.c \
-		get_next_line_bonus.c \
-		get_next_line_utils_bonus.c \
-		new_atoi_bonus.c \
-		rules_bonus.c \
-		rules_two_bonus.c \
-		create_s_bonus.c \
+BCFILES = $(wildcard src_bonus/*.c)
 
 BOFILES=$(BCFILES:.c=.o) 
 OFILES=$(CFILES:.c=.o)
@@ -29,8 +16,8 @@ all: $(NAME)
 $(NAME): $(OFILES) libs
 	@$(CC) $(CFLAGS) $(OFILES) $(LIBNAME) -o $(NAME)
 
-%.o:%.c push_swap.h checker_bonus.h
-	$(CC) $(CFLAGS) -c $<
+%.o:%.c src/push_swap.h src_bonus/checker_bonus.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 libs:
 	@cd libft && make && make bonus
